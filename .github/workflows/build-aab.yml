@@ -19,12 +19,19 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-          cache: gradle
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper
 
       - name: Make Gradle executable
         run: chmod +x gradlew
 
-      - name: Build AAB
+      - name: Build Android AAB
         run: ./gradlew bundleRelease --stacktrace
 
       - name: Upload AAB
