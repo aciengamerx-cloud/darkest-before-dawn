@@ -1,45 +1,38 @@
-# Darkest Before the Dawn
+# Darkest Before Dawn (Android Remake)
 
-## This is a very old application; do not use this to learn Castle Game Engine!
+A modern survival thriller remake of the classic horror game **Darkest Before Dawn**, fully rewritten using **Kotlin** and **Jetpack Compose (Material Design 3)** for Android devices.
 
-This application was developed using a very old _Castle Game Engine_ version. It still builds with the latest engine version (it is even tested by [GitHub Actions](https://castle-engine.io/github_actions) to make sure we maintain backward-compatibility) but it's absolutely *not* how I would go about implementing this game type now.
+## Core Gameplay Mechanics
 
-*Do not use this game as a learning example.* Instead, get [latest Castle Game Engine](https://castle-engine.io/) and browse `examples` inside the installed engine.
+-   **Stay in the Light:** The player's survival relies entirely on proximity to warm yellow light sources. 
+    -   **Within Security Radius (<60dp):** The player is safe. Health regenerates steadily at `1.8` points per second.
+    -   **In Darkness (>60dp):** The screen dynamic vignettes into pitch-black and blood-red. Health drains continuously; the further you venture into the dark, the faster you perish.
+-   **Elevator Scaling:** Scale through 4 progressive stages representing your escape route:
+    1.  **The Tube** (Pitch black metro tunnels)
+    2.  **The Street** (Dilapidated alleyways under moonlight)
+    3.  **The Outdoors** (A starry night forest)
+    4.  **The Above** (Scaling skyscrapers to meet the morning sun)
+-   **The Harpies (Shadow Beasts):** 
+    -   Creepy flying mists of shadow sense your fear. When you step into the dark, they pursue and relentlessly attack you.
+    -   If you enter the light, they become frightened and flee!
+-   **Dynamic Morning Progression:** The sky background color transitions dynamically from midnight blue to an orange gold sunbreak as you climb on elevators towards the dawn.
 
-This project is maintained here only:
-- for historical purposes
-- and as part of automated test to make sure we maintain backward-compatibility when developing new engine versions.
+## Features
 
-## Introduction
+-   **Polished Material 3 UI:** Seamlessly integrates original assets and high-contrast styling.
+-   **Local Preferences:** Native SharedPreferences save toggle settings for Graphics Quality (Fastest, Average, Beautiful) and Gamma Correction (Darkest, Average, Brightest).
+-   **Local Achievements System:** Unlocks achievements and timestamps them securely as you conquer levels and elevators.
+-   **Touch D-Pad Controls:** Optimized large touch-target buttons (>= 48.dp) for fluid and highly accessible mobile play.
+-   **Built-in Stage Skip Panel:** Easily skip between stages for immediate testing and exploration.
 
-A scary 3D game. You're only safe within the light.
+## Tech Stack & Architecture
 
-Game information: https://castle-engine.io/darkest_before_dawn.php .
-
-Using [Castle Game Engine](https://castle-engine.io/). This was the first game using Castle Game Engine for Android!
+-   **Language:** Kotlin
+-   **UI Framework:** Jetpack Compose (Material Design 3)
+-   **Architecture:** MVVM (Model-View-ViewModel) + Unidirectional Data Flow
+-   **Build System:** Gradle (Kotlin DSL), Android SDK 35, AGP 9.1.1 with native Kotlin compilation support
+-   **State Management:** Kotlin Coroutines & Flow (StateFlow)
 
 ## License
 
-Everything (code and data) is open-source, by Michalis Kamburelis, licensed on GNU GPL >= 2.0. Except some data files that are on various Creative Commons licenses (look for AUTHORS.txt inside data/).
-
-## Screenshots
-
-![Screenshot 1](screenshot_darkest_before_dawn_1.png)
-![Screenshot 2](screenshot_darkest_before_dawn_2.png)
-![Screenshot 3](screenshot_darkest_before_dawn_ui.png)
-
-## Author
-
-Michalis Kamburelis
-
-## Building
-
-Compile by:
-
-- [CGE editor](https://castle-engine.io/editor). Just use menu items _"Compile"_ or _"Compile And Run"_.
-
-- Or use [CGE command-line build tool](https://castle-engine.io/build_tool). Run `castle-engine compile` in this directory.
-
-- Or use [Lazarus](https://www.lazarus-ide.org/). Open in Lazarus `darkest_before_dawn_standalone.lpi` file and compile / run from Lazarus. Make sure to first register [CGE Lazarus packages](https://castle-engine.io/lazarus).
-
-- Or use [Delphi](https://www.embarcadero.com/products/Delphi). Open in Delphi `darkest_before_dawn_standalone.dproj` file and compile / run from Delphi. See [CGE and Delphi](https://castle-engine.io/delphi) documentation for details.
+Code and assets are licensed under GNU GPL >= 2.0 (Michalis Kamburelis remake).

@@ -1,0 +1,6 @@
+{
+  "name": "Darkest Before Dawn",
+  "description": "Stay in the light to survive. Scale the elevators, escape the shadow creatures, and climb to the morning dawn in this survival thriller.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
