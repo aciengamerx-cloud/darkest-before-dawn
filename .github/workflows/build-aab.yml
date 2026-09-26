@@ -31,7 +31,17 @@ jobs:
       - name: Make Gradle executable
         run: chmod +x gradlew
 
+      - name: Decode signing key
+        env:
+          KEY_BASE64: ${{ secrets.KEY_BASE64 }}
+        run: |
+          echo "$KEY_BASE64" | base64 --decode > app/upload-keystore.jks
+
       - name: Build Android AAB
+        env:
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: ./gradlew bundleRelease --stacktrace
 
       - name: Upload AAB
