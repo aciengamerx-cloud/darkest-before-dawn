@@ -1,0 +1,53 @@
+name: Create Upload Key
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-key:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create upload keystore
+        env:
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          keytool -genkeypair \
+            -v \
+            -keystore my-upload-key.jks \
+            -alias upload \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -storepass "$STORE_PASSWORD" \
+            -keypass "$KEY_PASSWORD" \
+            -dname "CN=Darkest Before Dawn, OU=Game, O=Darkest Before Dawn, L=Unknown, ST=Unknown, C=IN"
+
+      - name: Verify key
+        env:
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+        run: |
+          keytool -list \
+            -keystore my-upload-key.jks \
+            -storepass "$STORE_PASSWORD" \
+            -alias upload
+
+      - name: Export certificate
+        env:
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+        run: |
+          keytool -exportcert \
+            -rfc \
+            -keystore my-upload-key.jks \
+            -alias upload \
+            -storepass "$STORE_PASSWORD" \
+            -file upload_certificate.pem
+
+      - name: Upload generated files
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-upload-key
+          path: |
+            my-upload-key.jks
+            upload_certificate.pem
