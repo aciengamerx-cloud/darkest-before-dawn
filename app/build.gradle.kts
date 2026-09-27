@@ -11,7 +11,9 @@ android {
         applicationId = "com.aistudio.darkestbeforedawn.xmvpqp"
         minSdk = 24
         targetSdk = 36
-        versionCode = "1.0.1"
+
+        // Must be a whole number
+        versionCode = 2
         versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -39,7 +41,7 @@ android {
         }
 
         debug {
-            // Use Android's normal automatically generated debug keystore.
+            // Uses Android's default debug keystore
         }
     }
 
@@ -57,18 +59,22 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
     testImplementation(libs.junit)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
+
     debugImplementation(libs.androidx.compose.ui.tooling)
 }
