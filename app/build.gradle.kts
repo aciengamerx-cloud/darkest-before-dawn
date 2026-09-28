@@ -13,8 +13,8 @@ android {
         targetSdk = 36
 
         // Must be a whole number
-        versionCode = 3
-        versionName = "3.0"
+        versionCode = 4
+        versionName = "4.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
